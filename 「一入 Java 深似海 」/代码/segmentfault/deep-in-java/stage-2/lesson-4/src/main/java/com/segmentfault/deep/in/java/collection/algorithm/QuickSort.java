@@ -81,6 +81,30 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 
         return i;
     }
+    
+     /**
+     * 另一种获取分区索引
+     *
+     * @param values 数组对象
+     * @param low    低位索引
+     * @param high   高位索引
+     * @return 分区索引
+     */
+    int partitionOther(T[] values, int low, int high) {
+        T pivot = values[high];
+        int i = high;
+        for (int j = low; j <i ; j++) {
+            if(values[j].compareTo(pivot)==1){
+                T temp =values[j];
+                values[j] = values[i-1];
+                values[i-1] =pivot;
+                values[i] =temp;
+                i--;
+                j--;
+            }
+        }
+        return i;
+    }
 
     public static void main(String[] args) {
         Integer[] values = Sort.of(2, 5, 6, 7, 8, 8, 9, 2, 1, 6, 7, 5, 6, 11, 23);
